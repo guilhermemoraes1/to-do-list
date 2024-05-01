@@ -39,6 +39,10 @@ button > i {
     pointer-events: none;
 }
 
+#uncheck-off-btn {
+    margin-left: .4rem;
+}
+
 input, select {
     padding: 0.25rem 0.5rem;
 }

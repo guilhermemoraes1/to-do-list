@@ -7,6 +7,7 @@ const cancelEditBtn = document.querySelector('#cancel-edit-btn');
 const searchInput = document.querySelector("#search-input");
 const eraseBtn = document.querySelector("#erase-button");
 const filterBtn = document.querySelector("#filter-select");
+const uncheckBtn = document.querySelector("#uncheck-off-btn");
 
 let oldInputValue;
 
@@ -110,6 +111,18 @@ const filterTodos = (filterValue) => {
   }
 }
 
+const resetTodos = () => {
+  const todos = getTodosLocalStorage();
+
+  let doneTodos = todos.filter((todo) => todo.done == true);
+
+  doneTodos.forEach(
+    (todo) => {
+      updateTodoStatusLocalStorage(todo.text);}
+  );
+  
+};
+
 
 // Events
 
@@ -183,6 +196,12 @@ eraseBtn.addEventListener("click", (e) => {
 filterBtn.addEventListener("change", (e) => {
   const filterValue = e.target.value;
   filterTodos(filterValue);
+});
+
+uncheckBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  resetTodos();
+  location.reload();
 });
 
 // Local Storage
