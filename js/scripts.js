@@ -7,7 +7,6 @@ const cancelEditBtn = document.querySelector('#cancel-edit-btn');
 const searchInput = document.querySelector("#search-input");
 const eraseBtn = document.querySelector("#erase-button");
 const filterBtn = document.querySelector("#filter-select");
-const uncheckBtn = document.querySelector("#uncheck-off-btn");
 
 let oldInputValue;
 
@@ -111,19 +110,6 @@ const filterTodos = (filterValue) => {
   }
 }
 
-const resetTodos = () => {
-  const todos = getTodosLocalStorage();
-
-  let doneTodos = todos.filter((todo) => todo.done == true);
-
-  doneTodos.forEach(
-    (todo) => {
-      updateTodoStatusLocalStorage(todo.text);}
-  );
-  
-};
-
-
 // Events
 
 // esse evento é o botão de adicionar tarefa
@@ -198,17 +184,10 @@ filterBtn.addEventListener("change", (e) => {
   filterTodos(filterValue);
 });
 
-uncheckBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  resetTodos();
-  location.reload();
-});
-
 // Local Storage
 
-
 const getTodosLocalStorage = () => {
-  const todos = JSON.parse(localStorage.getItem("todos")) || [];
+  const todos = JSON.parse(localStorage.getItem(  "todos")) || [];
   return todos;
 };
 
